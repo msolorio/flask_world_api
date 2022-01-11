@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import request
 from flask_restful import Resource
 from sqlalchemy import or_
 from ..models import Country, country_schema, countries_schema
@@ -41,8 +41,8 @@ class CountriesResource(Resource):
             if param_val:
                 attr = getattr(Country, p)
                 members = param_val.split(':')
-                num_val = int(members[1])
                 direction = members[0]
+                num_val = int(members[1])
 
                 if direction == 'gt':
                     queries.append(attr > num_val)

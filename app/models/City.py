@@ -17,10 +17,10 @@ class City(db.Model):
 
 class CitySchema(ma.Schema):
     class Meta:
-        fields = ('id', 'name', 'countrycode', 'district', 'population')
+        fields = ('id', 'name', 'countrycode', 'district', 'population', 'country')
         model = City
 
-    country = ma.Nested('CountrySchema', excludes=('cities', 'capital'))
+    country = ma.Nested('CountryReducedSchema', excludes=('cities', 'capital'))
 
 
 city_schema = CitySchema()

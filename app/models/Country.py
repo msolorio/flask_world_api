@@ -29,12 +29,20 @@ class Country(db.Model):
 
 class CountrySchema(ma.Schema):
     class Meta:
-        fields = ('id', 'code', 'name', 'continent', 'region', 'surfacearea', 'indepyear', 'population', 'lifeexpectancy', 'localname', 'governmentform', 'capital_id')
+        fields = ('code', 'name', 'continent', 'region', 'surfacearea', 'indepyear', 'population', 'lifeexpectancy', 'localname', 'governmentform', 'capital_id')
         model = Country
 
     cities = ma.Nested('CitySchema', many=True, exclude=('country',))
     capital = ma.Nested('CitySchema', exclude=('country',))
 
 
+class CountryReducedSchema(ma.Schema):
+    class Meta:
+        fields = ('code', 'name')
+        model: Country
+
+
 country_schema = CountrySchema()
 countries_schema = CountrySchema(many=True)
+
+country_reduced_schema = CountryReducedSchema()

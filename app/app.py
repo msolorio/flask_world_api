@@ -3,7 +3,9 @@ from flask_migrate import Migrate
 from flask_restful import Api
 from .models import db, ma
 from .controllers.countries_controller import CountriesResource
+from .controllers.cities_controller import CitiesResource
 from .controllers.api_controller import ApiResource
+
 
 def create_app():
     app = Flask(__name__)
@@ -15,6 +17,7 @@ def create_app():
 
     api.add_resource(ApiResource, '/')
     api.add_resource(CountriesResource, '/countries')
+    api.add_resource(CitiesResource, '/cities')
 
     @app.route('/')
     def root():
