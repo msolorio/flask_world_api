@@ -1,6 +1,22 @@
+## World Data API
+REST API for world data.
 
+### Technologies
+- Flask
+- PostgreSQL
+- SQLAlchemy
+- Marshmallow
+- Flask RESTful
+- Flask Migrate
 
-## Routes
+### Features
+
+- Make detailed queries for information about countries and cities around the world.
+- Perform CRUD opperations on countries and cities.
+
+---
+
+### Routes
 
 All API routes are prepended with `/api`.
 
@@ -41,6 +57,8 @@ Get the capital city of a country
 ---
 
 ### Future Features
+Add OpenAPI / Swagger Documentation to API
+
 Get all countries that speak a particular language
 `/countries?language=<language>`
 
