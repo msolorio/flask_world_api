@@ -58,4 +58,9 @@ def get_countries_by_query_params():
 
     countries = Country.query.filter(*queries)
 
-    return jsonify(countries_schema.dump(countries)), 200
+    countries_json = countries_schema.dump(countries)
+
+    return {
+            '_length': len(countries_json),
+            'countries': countries_json
+        }, 200
