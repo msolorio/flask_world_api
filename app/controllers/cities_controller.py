@@ -79,3 +79,34 @@ class CityResource(Resource):
             return { 'message': 'No city found with that id.' }, 404
 
         return city_schema.dump(city), 200
+
+    
+    def patch(self, city_id):
+        city = City.query.get(city_id)
+        
+        if not city:
+            return { 'message': 'No city found with that id.' }, 404
+
+        available_fields = (
+            'name',
+            'countrycode',
+            'district',
+            'population'
+        )
+
+        for key, value in request.json.items():
+            if key in available_fields:
+                setattr(city, key, value)
+
+        db.session.commit()
+
+        return city_schema.dump(city), 200
+
+    
+    def delete(self, city_id):
+        city = City.query.get(city_id)
+
+        db.session.delete(city)
+        db.session.commit()
+
+        return { 'message': 'City deleted' }, 200

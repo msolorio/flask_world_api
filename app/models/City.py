@@ -8,7 +8,7 @@ class City(db.Model):
     countrycode = db.Column(db.String(3), db.ForeignKey('countries.code'), nullable=False)
     district = db.Column(db.String(127), nullable=False)
     population = db.Column(db.Integer, nullable=False)
-    country = db.relationship('Country', backref='cities', uselist=False)
+    country = db.relationship('Country', backref=db.backref('cities', cascade="all,delete"), uselist=False)
 
     def __repr__(self):
         return f'<City id={self.id} name={self.name}>'
