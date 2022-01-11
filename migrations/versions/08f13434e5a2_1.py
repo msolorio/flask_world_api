@@ -1,8 +1,8 @@
 """$1
 
-Revision ID: eedbea63e835
+Revision ID: 08f13434e5a2
 Revises: 
-Create Date: 2022-01-10 16:55:12.510004
+Create Date: 2022-01-11 14:36:39.085385
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'eedbea63e835'
+revision = '08f13434e5a2'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -37,7 +37,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('code')
     )
     op.create_table('cities',
-    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('name', sa.String(length=127), nullable=False),
     sa.Column('countrycode', sa.String(length=3), nullable=False),
     sa.Column('district', sa.String(length=127), nullable=False),

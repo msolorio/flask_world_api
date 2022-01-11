@@ -8,7 +8,7 @@ class CountriesResource(Resource):
     def get(self):
         queries = []
         search = request.args.get('search')
-        
+
         # Filters for match of search term
         if search:
             match = f'%{search}%'
@@ -20,6 +20,7 @@ class CountriesResource(Resource):
                 Country.localname.ilike(match),
                 Country.governmentform.ilike(match)
             ))
+
 
         # Filters for records that match specific params
         params = ['name', 'continent', 'governmentform']
@@ -56,6 +57,7 @@ class CountriesResource(Resource):
             '_length': len(countries_json),
             'countries': countries_json
         }, 200
+
 
 
     def post(self):

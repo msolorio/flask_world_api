@@ -3,7 +3,7 @@ from . import db, ma
 class City(db.Model):
     __tablename__ = 'cities'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(127), nullable=False)
     countrycode = db.Column(db.String(3), db.ForeignKey('countries.code'), nullable=False)
     district = db.Column(db.String(127), nullable=False)

@@ -1,6 +1,7 @@
 from flask import request
 from flask_restful import Resource
-from ..models import City, cities_schema, db, Country
+from ..models import City, cities_schema, city_schema, db, Country
+from ..utils.has_all_required_fields import has_all_required_fields
 
 
 class CitiesResource(Resource):
@@ -40,3 +41,41 @@ class CitiesResource(Resource):
             '_length': len(cities_json),
             'cities': cities_json
         }
+
+
+    def post(self):
+        req_data = request.get_json()
+
+        required_fields = (
+            'name',
+            'countrycode',
+            'district',
+            'population'
+        )
+
+        valid, fields = has_all_required_fields(req_data, required_fields)
+
+        if not valid:
+            return { 'message': f'Missing fields: {fields}' }
+
+        new_city = City(
+            name=req_data['name'],
+            countrycode=req_data['countrycode'],
+            district=req_data['district'],
+            population=req_data['population']
+        )
+
+        db.session.add(new_city)
+        db.session.commit()
+
+        return city_schema.dump(new_city)
+
+
+class CityResource(Resource):
+    def get(self, city_id):
+        city = City.query.get(city_id)
+
+        if not city:
+            return { 'message': 'No city found with that id.' }, 404
+
+        return city_schema.dump(city), 200
