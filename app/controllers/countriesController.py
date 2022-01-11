@@ -15,6 +15,8 @@ def get_countries_by_query_params():
     queries = []
     search = request.args.get('search')
 
+    # TODO: Move query construction to separate module functions
+
     # Filters for match of search term
     if search:
         match = f'%{search}%'

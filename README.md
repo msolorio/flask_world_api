@@ -1,5 +1,9 @@
 ## Routes
 
+## This app is a work in progress.
+
+All API routes are prepended with `/api`.
+
 ---
 
 ### Country
