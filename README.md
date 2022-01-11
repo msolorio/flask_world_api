@@ -1,6 +1,6 @@
-## Routes
 
-## This app is a work in progress.
+
+## Routes
 
 All API routes are prepended with `/api`.
 
@@ -25,8 +25,6 @@ Get all countries where life expectancy greater than / also less than
 Get all countries where surface area greater than / less than
 `/countries?surfacearea=gt:1000000`
 
-Get all countries that speak a particular language
-`/countries?language=<language>`
 
 ---
 
@@ -40,11 +38,12 @@ Get all cities with population greater than / less than
 Get the capital city of a country
 `/cities?capitalof=<country-name>`
 
-TODO: Plan for combinations of queries
-
 ---
 
-### Language
+### Future Features
+Get all countries that speak a particular language
+`/countries?language=<language>`
+
 Get all languages spoken in country
 `/languages?country=<country-name>`
 
