@@ -37,6 +37,24 @@ def get_countries_by_query_params():
             queries.append(attr.ilike(f'%{param_val}%'))
 
 
+    # Loop through query params
+    # if exists, filter for countries w/values gt or lt the param
+    num_params = ['population', 'lifeexpectancy', 'surfacearea']
+    for p in num_params:
+        param_val = request.args.get(p)
+
+        if param_val:
+            attr = getattr(Country, p)
+            members = param_val.split(':')
+            num_val = int(members[1])
+            direction = members[0]
+
+            if direction == 'gt':
+                queries.append(attr > num_val)
+            if direction == 'lt':
+                queries.append(attr < num_val)
+
+
     countries = Country.query.filter(*queries)
 
     return jsonify(countries_schema.dump(countries)), 200
