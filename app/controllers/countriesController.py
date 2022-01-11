@@ -27,7 +27,7 @@ def get_countries_by_query_params():
         ))
 
     # Loop through query params
-    # if exists, filter results by that value
+    # if exists, creates filter for that key/value pair
     params = ['name', 'continent', 'governmentform']
     for p in params:
         param_val = request.args.get(p)
