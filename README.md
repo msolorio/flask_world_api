@@ -20,7 +20,7 @@ Get all countries with population greater than / less than
 `/cities?population=gt:10000000`
 
 Get all countries where life expectancy greater than / also less than
-`/countries?lifeexpectancy=gt:80&limit=10`
+`/countries?lifeexpectancy=gt:80`
 
 Get all countries where surface area greater than / less than
 `/countries?surfacearea=gt:1000000`
