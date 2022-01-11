@@ -15,6 +15,7 @@ def get_countries_by_query_params():
     queries = []
     search = request.args.get('search')
 
+    # Filters for match of search term
     if search:
         match = f'%{search}%'
 
@@ -26,8 +27,7 @@ def get_countries_by_query_params():
             Country.governmentform.ilike(match)
         ))
 
-    # Loop through query params
-    # if exists, creates filter for that key/value pair
+    # Filters for records that match specific params
     params = ['name', 'continent', 'governmentform']
     for p in params:
         param_val = request.args.get(p)
@@ -37,8 +37,7 @@ def get_countries_by_query_params():
             queries.append(attr.ilike(f'%{param_val}%'))
 
 
-    # Loop through query params
-    # if exists, filter for countries w/values gt or lt the param
+    # filters for records with numeric values greater/less than query param values
     num_params = ['population', 'lifeexpectancy', 'surfacearea']
     for p in num_params:
         param_val = request.args.get(p)
