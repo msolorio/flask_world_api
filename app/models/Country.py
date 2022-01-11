@@ -18,8 +18,9 @@ class Country(db.Model):
     headofstate = db.Column(db.String(127))
     capital_id = db.Column(db.Integer)
     code2 = db.Column(db.String(2), nullable=False)
-    capital = db.relationship('City', backref='countries', lazy=True, uselist=False)
-    cities = db.relationship('City', backref='countries', lazy=True)
+    # capital = db.relationship('City', backref='countries', lazy=True, uselist=False)
+    # cities = db.relationship('City', backref='countries', lazy=True)
+
 
     def __repr__(self):
         return f'<Country code={self.code}>'
@@ -32,6 +33,7 @@ class CountrySchema(ma.Schema):
         model = Country
 
     cities = ma.Nested('CitySchema', many=True, exclude=('country',))
+    capital = ma.Nested('CitySchema', exclude=('country',))
 
 
 country_schema = CountrySchema()
