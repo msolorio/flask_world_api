@@ -5,6 +5,7 @@ from .models import db, ma
 from .controllers.countries_controller import CountriesResource, CountryResource
 from .controllers.cities_controller import CitiesResource, CityResource
 from .controllers.api_controller import ApiResource
+from .controllers.api_controller import DocsResource
 
 
 def create_app():
@@ -16,6 +17,8 @@ def create_app():
     Migrate(app, db)
 
     api.add_resource(ApiResource, '/')
+    api.add_resource(DocsResource, '/docs')
+
     api.add_resource(CountriesResource, '/countries')
     api.add_resource(CountryResource, '/countries/<string:countrycode>')
 

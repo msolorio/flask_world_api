@@ -1,0 +1,328 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "An API for searching automobile and user data",
+    "version": "1.0.0",
+    "title": "Autos API"
+  },
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/countries": {
+      "get": {
+        "tags": [
+          "countries"
+        ],
+        "summary": "Index - get all countries that meet a particular criteria",
+        "operationId": "allCountries",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "filter by country name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "continent",
+            "in": "query",
+            "description": "filter by continent",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "governmentform",
+            "in": "query",
+            "description": "filter by form of government",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "population",
+            "in": "query",
+            "description": "filter by less than/greater than population value ( ie. gt:1000000 or lt:10000 )",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "surfacearea",
+            "in": "query",
+            "description": "filter by less than/greater than surface area in square km ( ie. gt:10000000 or lt:100 )",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "lifeexpectancy",
+            "in": "query",
+            "description": "filter by less than/greater than life expectancy value in years ( ie. gt:80 or lt:40 )",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "countries"
+        ],
+        "summary": "Create - create an country",
+        "description": "",
+        "operationId": "createCountry",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "country",
+            "description": "properties and values for new country",
+            "schema": {
+              "required": [
+                "code",
+                "name",
+                "continent",
+                "region",
+                "surfacearea",
+                "population",
+                "localname",
+                "governmentform",
+                "code2"
+              ],
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "default": "AAA"
+                },
+                "name": {
+                  "type": "string",
+                  "default": "Sveltendorf"
+                },
+                "continent": {
+                  "type": "string",
+                  "default": "Imaginlandia"
+                },
+                "region": {
+                  "type": "string",
+                  "default": "North Imaginlandia"
+                },
+                "surfacearea": {
+                  "type": "integer",
+                  "default": "1000000"
+                },
+                "population": {
+                  "type": "integer",
+                  "default": 5
+                },
+                "localname": {
+                  "type": "string",
+                  "default": "Sveltendorf"
+                },
+                "governmentform": {
+                  "type": "string",
+                  "default": "Republic"
+                },
+                "code2": {
+                  "type": "string",
+                  "default": "AA"
+                },
+                "indepyear": {
+                  "type": "integer",
+                  "default": 1881
+                },
+                "capital_id": {
+                  "type": "integer",
+                  "default": 1234
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "400": {
+            "description": "invalid input"
+          }
+        }
+      }
+    },
+    "/countries/{countrycode}": {
+      "get": {
+        "tags": [
+          "countries"
+        ],
+        "summary": "Show - get a country by it's country code",
+        "description": "Returns a single country",
+        "operationId": "getCountry",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "countrycode",
+            "in": "path",
+            "description": "country code of country to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/Country"
+            }
+          },
+          "404": {
+            "description": "No country with that country code"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "countries"
+        ],
+        "summary": "Update - update an existing country by it's country code",
+        "description": "",
+        "operationId": "updateCountry",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "countrycode",
+            "in": "path",
+            "description": "country code of country to update",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "country",
+            "description": "The properties to update ( name, continent, region, surfacearea, indepyear, population, lifeexpectancy, localname, governmentform, capital_id, code2 )",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/Country"
+            }
+          },
+          "400": {
+            "description": "invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "countries"
+        ],
+        "summary": "Delete - delete an existing country",
+        "description": "",
+        "operationId": "deleteCountry",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "countrycode",
+            "in": "path",
+            "description": "Country code of country to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "404": {
+            "description": "No country found with that id"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Country": {
+      "type": "object",
+      "required": [
+        "code",
+        "name",
+        "continent",
+        "region",
+        "surfacearea",
+        "population",
+        "localname",
+        "governmentform",
+        "code2"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "A unique three digit string identifying the country"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the country"
+        },
+        "continent": {
+          "type": "string",
+          "description": "The continent of the country"
+        },
+        "region": {
+          "type": "string",
+          "description": "The region of the country"
+        },
+        "surfacearea": {
+          "type": "integer",
+          "description": "The surface area of the country in square km"
+        },
+        "population": {
+          "type": "integer",
+          "description": "The population of the country"
+        },
+        "localname": {
+          "type": "string",
+          "description": "The locally used name of the country"
+        },
+        "governmentform": {
+          "type": "string",
+          "description": "The government form of the country"
+        },
+        "code2": {
+          "type": "string",
+          "description": "A unique two digit string identifying the country"
+        },
+        "indepyear": {
+          "type": "integer",
+          "description": "The independence year of the country"
+        },
+        "capital_id": {
+          "type": "integer",
+          "description": "The city id of the capital city of the country"
+        }
+      }
+    }
+  }
+}

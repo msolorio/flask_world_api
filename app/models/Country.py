@@ -43,3 +43,4 @@ country_schema = CountrySchema()
 countries_schema = CountrySchema(many=True)
 
 country_reduced_schema = CountryReducedSchema()
+

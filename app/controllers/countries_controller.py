@@ -63,6 +63,9 @@ class CountriesResource(Resource):
     def post(self):
         new_country = Country(**request.json)
 
+        if not new_country:
+            return { 'message': 'Invalid input' }, 400
+
         db.session.add(new_country)
         db.session.commit()
         return country_schema.dump(new_country), 201
