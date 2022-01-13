@@ -22,6 +22,13 @@
         ],
         "parameters": [
           {
+            "name": "search",
+            "in": "query",
+            "description": "filter countries by general search term",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "name",
             "in": "query",
             "description": "filter by country name",
@@ -261,6 +268,228 @@
           }
         }
       }
+    },
+    "/cities": {
+      "get": {
+        "tags": [
+          "cities"
+        ],
+        "summary": "Index - get all cities that meet a particular criteria",
+        "operationId": "allCities",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Filter cities by general search term",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Filter by city name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "description": "Filter cities by country",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "population",
+            "in": "query",
+            "description": "Filter by less than/greater than population value ( ie. gt:1000000 or lt:10000 )",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "capitalof",
+            "in": "query",
+            "description": "Get the capital of a given country (returns an array of a single city)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "district",
+            "in": "query",
+            "description": "Filter by a district name",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "cities"
+        ],
+        "summary": "Create - create a city",
+        "description": "",
+        "operationId": "createCountry",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "country",
+            "description": "properties and values for new city",
+            "schema": {
+              "required": [
+                "name",
+                "countrycode",
+                "district",
+                "population"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "default": "Waterby"
+                },
+                "countrycode": {
+                  "type": "string",
+                  "default": "AAA"
+                },
+                "district": {
+                  "type": "string",
+                  "default": "Lakeside"
+                },
+                "population": {
+                  "type": "integer",
+                  "default": 5
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/City"
+            }
+          },
+          "400": {
+            "description": "invalid input"
+          }
+        }
+      }
+    },
+    "/cities/{city_id}": {
+      "get": {
+        "tags": [
+          "cities"
+        ],
+        "summary": "Show - get a city by it's id",
+        "description": "Returns a single city",
+        "operationId": "getCity",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "city_id",
+            "in": "path",
+            "description": "id of city to return",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/City"
+            }
+          },
+          "404": {
+            "description": "No city with that id found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "cities"
+        ],
+        "summary": "Update - update an existing city by it's id",
+        "description": "",
+        "operationId": "updateCity",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "city_id",
+            "in": "path",
+            "description": "id of city to update",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "city",
+            "description": "The properties to update ( name, countrycode, district, population )",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/City"
+            }
+          },
+          "400": {
+            "description": "invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "cities"
+        ],
+        "summary": "Delete - delete an existing country",
+        "description": "",
+        "operationId": "deleteCity",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "city_id",
+            "in": "path",
+            "description": "Id of city to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "404": {
+            "description": "No city found with that id"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -321,6 +550,38 @@
         "capital_id": {
           "type": "integer",
           "description": "The city id of the capital city of the country"
+        }
+      }
+    },
+    "City": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "countrycode",
+        "district",
+        "population"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "A unique id for city assigned by database"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the city"
+        },
+        "countrycode": {
+          "type": "string",
+          "description": "The country code for the country the city is located in"
+        },
+        "district": {
+          "type": "string",
+          "description": "The district of the"
+        },
+        "population": {
+          "type": "integer",
+          "description": "The population of the country"
         }
       }
     }

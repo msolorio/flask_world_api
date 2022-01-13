@@ -8,10 +8,10 @@ from ..utils.has_all_required_fields import has_all_required_fields
 class CitiesResource(Resource):
     def get(self):
         queries = []
+        search = request.args.get('search')
         country = request.args.get('country')
         population = request.args.get('population')
-        capital_of = request.args.get('capital_of')
-        search = request.args.get('search')
+        capital_of = request.args.get('capitalof')
 
 
         if search:
@@ -20,6 +20,7 @@ class CitiesResource(Resource):
 
             queries.append(or_(
                 City.name.ilike(match),
+                City.countrycode.ilike(match),
                 City.district.ilike(match)
             ))
 
