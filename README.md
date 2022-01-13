@@ -12,10 +12,17 @@ REST API for world data.
 
 - Make detailed queries for information about countries and cities around the world.
 - Perform CRUD opperations on countries and cities.
+- Visit Open API / Swagger UI documentation to explore API.
 
 ---
 
-### Routes
+### Explore
+
+visit `/api/docs` to explore the available routes and query country and city data.
+
+---
+
+## Routes
 
 All API routes are prepended with `/api`.
 
