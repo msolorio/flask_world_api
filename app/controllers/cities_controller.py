@@ -1,5 +1,6 @@
 from flask import request
 from flask_restful import Resource
+from sqlalchemy import or_
 from ..models import City, cities_schema, city_schema, db, Country
 from ..utils.has_all_required_fields import has_all_required_fields
 
@@ -10,6 +11,28 @@ class CitiesResource(Resource):
         country = request.args.get('country')
         population = request.args.get('population')
         capital_of = request.args.get('capital_of')
+        search = request.args.get('search')
+
+
+        if search:
+            # Filters for matches of search term
+            match = f'%{search}%'
+
+            queries.append(or_(
+                City.name.ilike(match),
+                City.district.ilike(match)
+            ))
+
+
+        # Filters for records that match specific params
+        params = ['name', 'district']
+        for p in params:
+            param_val = request.args.get(p)
+
+            if param_val:
+                attr = getattr(City, p)
+                queries.append(attr.ilike(f'%{param_val}%'))
+
 
         if country:
             # query cities with a country with name matching query param

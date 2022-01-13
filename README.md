@@ -5,9 +5,8 @@ REST API for world data.
 - Flask
 - PostgreSQL
 - SQLAlchemy
-- Marshmallow
-- Flask RESTful
-- Flask Migrate
+- Swagger / Open API UI
+- And other players in the flask ecosystem
 
 ### Features
 

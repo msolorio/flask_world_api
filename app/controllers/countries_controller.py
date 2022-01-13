@@ -9,7 +9,7 @@ class CountriesResource(Resource):
         queries = []
         search = request.args.get('search')
 
-        # Filters for match of search term
+        # Filters for matches of search term
         if search:
             match = f'%{search}%'
 
