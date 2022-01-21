@@ -65,7 +65,6 @@ Get the capital city of a country
 ---
 
 ### Future Features
-Add OpenAPI / Swagger Documentation to API
 
 Get all countries that speak a particular language
 `/countries?language=<language>`
