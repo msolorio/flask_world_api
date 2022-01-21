@@ -18,7 +18,9 @@ REST API for world data.
 
 ### Explore
 
-visit `/api/docs` to explore the available routes and query country and city data.
+visit `/api/docs` to explore the Open API / Swagger UI documentation
+- shows available routes
+- query country and city data
 
 ---
 
