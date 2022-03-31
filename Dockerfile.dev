@@ -1,9 +1,9 @@
 FROM python:3.9
 
 RUN pip install pipenv
-ENV FLASK_ENV=production
+ENV FLASK_ENV=development
 ENV FLASK_APP=run:app
-ENV DEBUG=False
+ENV DEBUG=True
 
 WORKDIR /app
 
