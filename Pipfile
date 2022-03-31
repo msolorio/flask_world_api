@@ -11,6 +11,8 @@ flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 sqlalchemy = "*"
 flask-restful = "*"
+waitress = "*"
+# psycopg2-binary= "2.8.3"
 
 [dev-packages]
 
