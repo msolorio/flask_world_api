@@ -3,7 +3,7 @@ FROM python:3.9
 RUN pip install pipenv
 ENV FLASK_ENV=development
 ENV FLASK_APP=run:app
-ENV SQLALCHEMY_DATABASE_URI=postgresql://postgres:postgres@worlddb:5432/world_db
+ENV DATABASE_URL=postgresql://postgres:postgres@worlddb:5432/world_db
 ENV DEBUG=True
 
 WORKDIR /app
