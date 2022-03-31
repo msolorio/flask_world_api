@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect
 from flask_migrate import Migrate
 from flask_restful import Api
 from .models import db, ma
@@ -6,7 +6,6 @@ from .controllers.countries_controller import CountriesResource, CountryResource
 from .controllers.cities_controller import CitiesResource, CityResource
 from .controllers.api_controller import ApiResource
 from .controllers.api_controller import DocsResource
-
 
 def create_app():
     app = Flask(__name__)
