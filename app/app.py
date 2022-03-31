@@ -6,8 +6,11 @@ from .controllers.countries_controller import CountriesResource, CountryResource
 from .controllers.cities_controller import CitiesResource, CityResource
 from .controllers.api_controller import ApiResource
 from .controllers.api_controller import DocsResource
+from .utils.update_database_url import update_database_url
 
 def create_app():
+    update_database_url()
+
     app = Flask(__name__)
     app.config.from_object('app.config')
     db.init_app(app)
