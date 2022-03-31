@@ -3,7 +3,6 @@ FROM python:3.9
 RUN pip install pipenv
 ENV FLASK_ENV=development
 ENV FLASK_APP=run:app
-ENV DATABASE_URL=postgresql://postgres:postgres@worlddb:5432/world_db
 ENV DEBUG=True
 
 WORKDIR /app
@@ -16,7 +15,6 @@ COPY ["Pipfile", "Pipfile.lock", "./"]
 
 RUN pipenv install --system --deploy
 
-
 COPY . .
 
-CMD ["waitress-serve", "--call", "run:create_app"]
+CMD waitress-serve --port=$PORT --call "run:create_app"
