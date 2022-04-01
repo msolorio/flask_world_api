@@ -7,23 +7,10 @@ from .controllers.countries_controller import CountriesResource, CountryResource
 from .controllers.cities_controller import CitiesResource, CityResource
 from .controllers.api_controller import ApiResource
 from .controllers.api_controller import DocsResource
-from .utils.update_database_url import update_database_url
 
 print('in app.py')
 
 def create_app():
-    print('called create_app')
-
-    DATABASE_URL = os.environ['DATABASE_URL']
-    
-    # if FLASK_ENV == 'production':
-    UPDATED_DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
-    os.environ['UPDATED_DATABASE_URL'] = UPDATED_DATABASE_URL
-
-    print(os.environ['UPDATED_DATABASE_URL'])
-
-    # update_database_url()
-
     app = Flask(__name__)
     app.config.from_object('app.config')
     db.init_app(app)
