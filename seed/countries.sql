@@ -1,4 +1,4 @@
-\c world_db
+-- \c world_db
 
 INSERT INTO countries
 (code, name, continent, region, surfacearea, indepyear, population, lifeexpectancy, gnp, gnpold, localname, governmentform, headofstate, capital_id, code2)
