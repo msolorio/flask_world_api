@@ -1,5 +1,3 @@
--- \c world_db
-
 INSERT INTO cities
 (name, countrycode, district, population)
 VALUES
