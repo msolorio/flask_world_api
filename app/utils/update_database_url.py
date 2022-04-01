@@ -6,4 +6,4 @@ def update_database_url():
     
     if FLASK_ENV == 'production':
         UPDATED_DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
-        os.environ['DATABASE_URL'] = UPDATED_DATABASE_URL
+        os.environ['UPDATED_DATABASE_URL'] = UPDATED_DATABASE_URL
