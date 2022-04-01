@@ -8,22 +8,18 @@ REST API for world data.
 - Swagger / Open API UI
 - And other players in the flask ecosystem
 
-### Try the App
-http://world-data-api.herokuapp.com/api/docs
+### Explore the API
+https://world-data-api.herokuapp.com/api/docs
+
+Visit `/api/docs` to explore the Open API / Swagger UI documentation
+- shows available routes
+- query country and city data
 
 ### Features
 
 - Make detailed queries for information about countries and cities around the world.
 - Perform CRUD opperations on countries and cities.
 - Visit Open API / Swagger UI documentation to explore API.
-
----
-
-### Explore
-
-visit `/api/docs` to explore the Open API / Swagger UI documentation
-- shows available routes
-- query country and city data
 
 ---
 
