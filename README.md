@@ -14,15 +14,18 @@ REST API for searching world data.
 
 ---
 
-## Explore the API
+## Ways to Explore
 
-Visit [`/api/docs`](https://world-data-api.herokuapp.com/api/docs) to explore Swagger UI or hit routes directly from a browser.
+- Visit [`/api/docs`](https://world-data-api.herokuapp.com/api/docs) to explore Swagger UI.
+- Hit routes directly from a browser.
+- Use your favorite HTTP client.
 
 https://world-data-api.herokuapp.com/api/
 
 ---
 
 ## Routes
+Use query params in isolation or in combination.
 
 ### Country
 Countries by search term.<br>
@@ -37,13 +40,13 @@ Countries by continent.<br>
 Countries by government form.<br>
 `/api/countries?governmentform=<government-form>`
 
-Countries with population greater than / than...<br>
+Countries with population greater than / less than...<br>
 `/api/cities?population=gt:10000000`
 
-Countries with life expectancy greater than / than...<br>
+Countries with life expectancy greater than / less than...<br>
 `/api/countries?lifeexpectancy=gt:80`
 
-Countries with surface area greater than / than...<br>
+Countries with surface area greater than / less than...<br>
 `/api/countries?surfacearea=gt:1000000`
 
 Return type

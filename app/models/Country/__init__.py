@@ -1,4 +1,6 @@
-from . import db, ma
+from .. import db, ma
+from . import methods
+
 
 class Country(db.Model):
     __tablename__ = 'countries'
@@ -23,10 +25,33 @@ class Country(db.Model):
         return f'<Country code={self.code}>'
 
 
+    @classmethod
+    def delete(cls, countrycode):
+        methods.delete(cls, countrycode)
+
+
+    @classmethod
+    def create(cls, country_data):
+        return methods.create(cls, country_data)
+
+
+
 
 class CountrySchema(ma.Schema):
     class Meta:
-        fields = ('code', 'name', 'continent', 'region', 'surfacearea', 'indepyear', 'population', 'lifeexpectancy', 'localname', 'governmentform', 'capital_id')
+        fields = (
+            'code',
+            'name',
+            'continent',
+            'region',
+            'surfacearea',
+            'indepyear',
+            'population',
+            'lifeexpectancy',
+            'localname',
+            'governmentform',
+            'capital_id'
+        )
         model = Country
 
     cities = ma.Nested('CitySchema', many=True, exclude=('country',))

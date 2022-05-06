@@ -14,6 +14,7 @@ class CountriesResource(Resource):
             match = f'%{search}%'
 
             queries.append(or_(
+                Country.code.ilike(match),
                 Country.name.ilike(match),
                 Country.continent.ilike(match),
                 Country.region.ilike(match),
@@ -61,14 +62,14 @@ class CountriesResource(Resource):
 
 
     def post(self):
-        new_country = Country(**request.json)
+        country_data = request.json
 
-        if not new_country:
-            return { 'message': 'Invalid input' }, 400
+        response = Country.create(country_data)
 
-        db.session.add(new_country)
-        db.session.commit()
-        return country_schema.dump(new_country), 201
+        if response.message:
+            return response, 400
+
+        return country_schema.dump(response), 201
 
 
 
@@ -112,9 +113,6 @@ class CountryResource(Resource):
 
 
     def delete(self, countrycode):
-        country = Country.query.get(countrycode)
-
-        db.session.delete(country)
-        db.session.commit()
+        Country.delete(countrycode)
 
         return { 'message': 'Country deleted' }, 200

@@ -1,4 +1,4 @@
-from . import db, ma
+from .. import db, ma
 
 class City(db.Model):
     __tablename__ = 'cities'
