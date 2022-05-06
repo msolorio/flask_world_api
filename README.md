@@ -1,76 +1,94 @@
-## World Data API
+# World Data API
 REST API for searching world data.
 
-https://world-data-api.herokuapp.com/api/
+![world map](./readme-assets/world-map.jpg)
 
-### Technologies
+---
+
+## Tech Used
+- Python
 - Flask
 - PostgreSQL
 - SQLAlchemy
 - Swagger / Open API UI
-- And other players in the flask ecosystem
 
-### Features
+---
 
-- Perform detailed queries for information about countries and cities around the world.
-- Perform CRUD opperations on countries and cities.
-- Visit Open API / Swagger UI documentation to explore API.
+## Explore the API
 
-### [Explore the API](https://world-data-api.herokuapp.com/api/docs)
+Visit [`/api/docs`](https://world-data-api.herokuapp.com/api/docs) to explore Swagger UI or hit routes directly from a browser.
 
-Visit [`/api/docs`](https://world-data-api.herokuapp.com/api/docs) to explore the Open API / Swagger UI documentation.
-- shows available routes
-- query country and city data
+https://world-data-api.herokuapp.com/api/
 
 ---
 
 ## Routes
 
----
-
 ### Country
-Search countries by name.
+Countries by search term.<br>
+`/api/countries/?search=<search-term>`
+
+Countries by name.<br>
 `/api/countries?name=<country-name>`
 
-Search countries by continent.
+Countries by continent.<br>
 `/api/countries?continent=<continent-name>`
 
-Search countries by government form.
+Countries by government form.<br>
 `/api/countries?governmentform=<government-form>`
 
-Search countries with population greater than / than...
+Countries with population greater than / than...<br>
 `/api/cities?population=gt:10000000`
 
-Search countries with life expectancy greater than / than...
+Countries with life expectancy greater than / than...<br>
 `/api/countries?lifeexpectancy=gt:80`
 
-Search countries with surface area greater than / than...
+Countries with surface area greater than / than...<br>
 `/api/countries?surfacearea=gt:1000000`
+
+Return type
+```json
+{
+  "_length": 0, // number of countries returned
+  "countries": [] // array of country objects
+}
+```
 
 ---
 
 ### City
-Search cities within a given country.
+Cities by search term.<br>
+`/api/cities/?search=<search-term>`
+
+Cities within a given country.<br>
 `/api/cities?country=<country-name>`
 
-Find the capital city of a given country.
+Capital city of a given country.<br>
 `/api/cities?capitalof=<country-name>`
 
-Search cities by with population greater than / less than...
+Cities by with population greater than / less than...<br>
 `/api/cities?population=gt:1000000`
+
+Return type
+```json
+{
+  "_length": 0, // number of cities returned
+  "cities": [] // array of city objects
+}
+```
 
 ---
 
 ### Future Features
-I would like to add a spoken language component to the API.
+Add a spoken language component to the API.
 
-Search cities that speak a given language.
+Countries that speak a given language.<br>
 `/api/countries?language=<language>`
 
-Get all languages spoken in a given country.
+All languages spoken in a given country.<br>
 `/api/languages?country=<country-name>`
 
-Get all official languages spoken in a given country.
+All official languages spoken in a given country.<br>
 `/api/languages?country=<country-name>&isofficial=true`
 
 ---

@@ -25,7 +25,7 @@ class CitiesResource(Resource):
             ))
 
 
-        # Filters for records that match specific params
+        # Filters for records that match specific query params
         params = ['name', 'district']
         for p in params:
             param_val = request.args.get(p)
@@ -59,6 +59,7 @@ class CitiesResource(Resource):
             queries.append(City.id == Country.query.filter(Country.name.ilike(match))[0].capital_id)
 
         cities = City.query.filter(*queries)
+        
         cities_json = cities_schema.dump(cities)
 
         return {

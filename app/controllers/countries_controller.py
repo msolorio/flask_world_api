@@ -22,7 +22,7 @@ class CountriesResource(Resource):
             ))
 
 
-        # Filters for records that match specific params
+        # Filters for records that match specific query params
         params = ['name', 'continent', 'governmentform']
         for p in params:
             param_val = request.args.get(p)
