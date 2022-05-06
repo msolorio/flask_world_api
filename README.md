@@ -8,8 +8,8 @@ REST API for world data.
 - Swagger / Open API UI
 - And other players in the flask ecosystem
 
-### Explore the API
-https://world-data-api.herokuapp.com/api/docs
+<!-- ### Explore the API
+https://world-data-api.herokuapp.com/api/docs -->
 
 Visit `/api/docs` to explore the Open API / Swagger UI documentation
 - shows available routes

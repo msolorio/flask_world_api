@@ -8,8 +8,6 @@ from .controllers.cities_controller import CitiesResource, CityResource
 from .controllers.api_controller import ApiResource
 from .controllers.api_controller import DocsResource
 
-print('in app.py')
-
 def create_app():
     app = Flask(__name__)
     app.config.from_object('app.config')
@@ -29,8 +27,6 @@ def create_app():
 
     @app.route('/')
     def root():
-        print('hit the root')
-
         return redirect(api.url_for(ApiResource))
 
     return app

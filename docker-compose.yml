@@ -18,6 +18,7 @@ services:
     volumes:
       - ./:/app
     restart: unless-stopped
+    command: ['./scripts/wait_for_it.sh', 'worlddb:5432', '--', './scripts/app_start_docker_compose.sh']
 
   worlddb:
     container_name: worlddb

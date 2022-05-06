@@ -1,2 +1,6 @@
-SQLALCHEMY_DATABASE_URI = 'psql-connection-string/world_db'
+import os
+
+from .utils.get_updated_db_url import get_updated_db_url
+
+SQLALCHEMY_DATABASE_URI = get_updated_db_url()
 SQLALCHEMY_TRACK_MODIFICATIONS = False

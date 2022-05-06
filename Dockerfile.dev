@@ -10,6 +10,7 @@ WORKDIR /app
 RUN apt-get update
 # TODO: troubleshoot installing v14 to match the DB installation
 RUN apt-get -y install postgresql
+RUN apt-get -y install bash
 
 COPY ["Pipfile", "Pipfile.lock", "./"]
 
