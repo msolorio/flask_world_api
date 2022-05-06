@@ -1,10 +1,11 @@
 swagger: "2.0"
 info:
-  description: "An API for searching automobile and user data"
+  description: "A REST API for searching world data."
   version: "1.0.0"
-  title: "Autos API"
+  title: "World Data API"
 basePath: "/api"
 schemes:
+- "https"
 - "http"
 paths:
   /countries:
