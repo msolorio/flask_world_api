@@ -12,6 +12,7 @@ marshmallow-sqlalchemy = "*"
 sqlalchemy = "*"
 flask-restful = "*"
 waitress = "*"
+hupper = "*"
 
 [dev-packages]
 
