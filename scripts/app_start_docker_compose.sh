@@ -1,2 +1,5 @@
-# hupper -m waitress-serve --port=$PORT --call "run:create_app"
-hupper -m waitress --port=$PORT --call "run:create_app"
+./scripts/db_apply_migrations.sh
+
+./scripts/db_seed.sh
+
+flask run -p 5000 -h 0.0.0.0

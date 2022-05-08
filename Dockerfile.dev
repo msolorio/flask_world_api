@@ -17,5 +17,3 @@ COPY ["Pipfile", "Pipfile.lock", "./"]
 RUN pipenv install --system --deploy
 
 COPY . .
-
-CMD waitress-serve --port=$PORT --call "run:create_app"
