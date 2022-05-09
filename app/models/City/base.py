@@ -5,7 +5,7 @@ class City(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(127), nullable=False)
-    countrycode = db.Column(db.String(3), db.ForeignKey('countries.code'), nullable=False)
+    country_code = db.Column(db.String(3), db.ForeignKey('countries.code'), nullable=False)
     district = db.Column(db.String(127), nullable=False)
     population = db.Column(db.Integer, nullable=False)
     country = db.relationship('Country', backref=db.backref('cities', cascade="all,delete"), uselist=False)
@@ -17,7 +17,7 @@ class City(db.Model):
 
 class CitySchema(ma.Schema):
     class Meta:
-        fields = ('id', 'name', 'countrycode', 'district', 'population', 'country')
+        fields = ('id', 'name', 'country_code', 'district', 'population', 'country')
         model = City
 
     country = ma.Nested('CountryReducedSchema', excludes=('cities', 'capital'))

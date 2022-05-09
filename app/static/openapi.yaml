@@ -119,7 +119,7 @@ paths:
           description: "success"
         "400":
           description: "invalid input"
-  /countries/{countrycode}:
+  /countries/{country_code}:
     get:
       tags:
       - "countries"
@@ -129,7 +129,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "countrycode"
+      - name: "country_code"
         in: "path"
         description: "country code of country to return"
         required: true
@@ -152,7 +152,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "countrycode"
+      - name: "country_code"
         in: "path"
         description: "country code of country to update"
         required: true
@@ -178,7 +178,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "countrycode"
+      - name: "country_code"
         in: "path"
         description: "Country code of country to delete"
         required: true
@@ -247,14 +247,14 @@ paths:
           schema:
             required:
               - "name"
-              - "countrycode"
+              - "country_code"
               - "district"
               - "population"
             properties:
               name:
                 type: "string"
                 default: "Waterby"
-              countrycode:
+              country_code:
                 type: "string"
                 default: "AAA"
               district:
@@ -310,7 +310,7 @@ paths:
         type: "string"
       - in: "body"
         name: "city"
-        description: "The properties to update ( name, countrycode, district, population )"
+        description: "The properties to update ( name, country_code, district, population )"
         schema:
           type: "object"
       responses:
@@ -391,7 +391,7 @@ definitions:
     required:
     - "id"
     - "name"
-    - "countrycode"
+    - "country_code"
     - "district"
     - "population"
     properties:
@@ -401,7 +401,7 @@ definitions:
       name:
         type: "string"
         description: "The name of the city"
-      countrycode:
+      country_code:
         type: "string"
         description: "The country code for the country the city is located in"
       district:

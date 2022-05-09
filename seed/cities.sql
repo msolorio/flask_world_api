@@ -1,5 +1,5 @@
 INSERT INTO cities
-(name, countrycode, district, population)
+(name, country_code, district, population)
 VALUES
 ('Kabul', 'AFG', 'Kabol', 1780000),
 ('Qandahar', 'AFG', 'Qandahar', 237500),

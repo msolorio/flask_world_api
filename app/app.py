@@ -17,7 +17,7 @@ def create_app():
     api.add_resource(DocsResource, '/docs')
 
     api.add_resource(CountriesResource, '/countries')
-    api.add_resource(CountryResource, '/countries/<string:countrycode>')
+    api.add_resource(CountryResource, '/countries/<string:country_code>')
 
     api.add_resource(CitiesResource, '/cities')
     api.add_resource(CityResource, '/cities/<int:city_id>')

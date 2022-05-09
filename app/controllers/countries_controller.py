@@ -37,8 +37,8 @@ class CountriesResource(Resource):
 
 
 class CountryResource(Resource):
-    def get(self, countrycode):
-        response = Country.find(countrycode)
+    def get(self, country_code):
+        response = Country.find(country_code)
 
         if isinstance(response, generalError):
             return response.dict(), response.status
@@ -47,10 +47,10 @@ class CountryResource(Resource):
 
 
 
-    def patch(self, countrycode):
+    def patch(self, country_code):
         provided_fields = request.json.items()
 
-        response = Country.update(countrycode, provided_fields)
+        response = Country.update(country_code, provided_fields)
 
         if isinstance(response, generalError):
             return response.dict(), response.status
@@ -59,8 +59,8 @@ class CountryResource(Resource):
 
 
 
-    def delete(self, countrycode):
-        response = Country.delete(countrycode)
+    def delete(self, country_code):
+        response = Country.delete(country_code)
 
         if isinstance(response, generalError):
             return response.dict(), response.status

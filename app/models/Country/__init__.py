@@ -26,8 +26,8 @@ class Country(db.Model):
 
 
     @classmethod
-    def delete(cls, countrycode):
-        methods.delete(cls, countrycode)
+    def delete(cls, country_code):
+        methods.delete(cls, country_code)
 
 
     @classmethod

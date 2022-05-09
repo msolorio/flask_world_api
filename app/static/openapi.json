@@ -167,7 +167,7 @@
         }
       }
     },
-    "/countries/{countrycode}": {
+    "/countries/{country_code}": {
       "get": {
         "tags": [
           "countries"
@@ -180,7 +180,7 @@
         ],
         "parameters": [
           {
-            "name": "countrycode",
+            "name": "country_code",
             "in": "path",
             "description": "country code of country to return",
             "required": true,
@@ -214,7 +214,7 @@
         ],
         "parameters": [
           {
-            "name": "countrycode",
+            "name": "country_code",
             "in": "path",
             "description": "country code of country to update",
             "required": true,
@@ -253,7 +253,7 @@
         ],
         "parameters": [
           {
-            "name": "countrycode",
+            "name": "country_code",
             "in": "path",
             "description": "Country code of country to delete",
             "required": true,
@@ -351,7 +351,7 @@
             "schema": {
               "required": [
                 "name",
-                "countrycode",
+                "country_code",
                 "district",
                 "population"
               ],
@@ -360,7 +360,7 @@
                   "type": "string",
                   "default": "Waterby"
                 },
-                "countrycode": {
+                "country_code": {
                   "type": "string",
                   "default": "AAA"
                 },
@@ -445,7 +445,7 @@
           {
             "in": "body",
             "name": "city",
-            "description": "The properties to update ( name, countrycode, district, population )",
+            "description": "The properties to update ( name, country_code, district, population )",
             "schema": {
               "type": "object"
             }
@@ -559,7 +559,7 @@
       "required": [
         "id",
         "name",
-        "countrycode",
+        "country_code",
         "district",
         "population"
       ],
@@ -572,7 +572,7 @@
           "type": "string",
           "description": "The name of the city"
         },
-        "countrycode": {
+        "country_code": {
           "type": "string",
           "description": "The country code for the country the city is located in"
         },

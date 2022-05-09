@@ -20,7 +20,7 @@ class CitiesResource(Resource):
 
             queries.append(or_(
                 City.name.ilike(match),
-                City.countrycode.ilike(match),
+                City.country_code.ilike(match),
                 City.district.ilike(match)
             ))
 
@@ -73,7 +73,7 @@ class CitiesResource(Resource):
 
         required_fields = (
             'name',
-            'countrycode',
+            'country_code',
             'district',
             'population'
         )
@@ -85,7 +85,7 @@ class CitiesResource(Resource):
 
         new_city = City(
             name=req_data['name'],
-            countrycode=req_data['countrycode'],
+            country_code=req_data['country_code'],
             district=req_data['district'],
             population=req_data['population']
         )
@@ -114,7 +114,7 @@ class CityResource(Resource):
 
         available_fields = (
             'name',
-            'countrycode',
+            'country_code',
             'district',
             'population'
         )
