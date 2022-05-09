@@ -1,7 +1,7 @@
 from flask import request
 from flask_restful import Resource
 from sqlalchemy import or_
-from ..models import Country, country_schema, countries_schema, db
+from ..models import Country, country_schema, countries_schema, db, generalError
 
 
 class CountriesResource(Resource):
@@ -66,8 +66,8 @@ class CountriesResource(Resource):
 
         response = Country.create(country_data)
 
-        if response.message:
-            return response, 400
+        if isinstance(response, generalError):
+            return response.message, response.status
 
         return country_schema.dump(response), 201
 
