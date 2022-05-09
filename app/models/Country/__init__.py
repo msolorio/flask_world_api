@@ -35,6 +35,19 @@ class Country(db.Model):
         return methods.create(cls, country_data)
 
 
+    @classmethod
+    def find(cls, country_code):
+        return methods.find(cls, country_code)
+
+
+    @classmethod
+    def update(cls, country_code, provided_fields):
+        return methods.update(cls, country_code, provided_fields)
+
+
+    @classmethod
+    def find_many(cls, query_params):
+        return methods.find_many(cls, query_params)
 
 
 class CountrySchema(ma.Schema):

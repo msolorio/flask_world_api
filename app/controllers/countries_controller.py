@@ -1,3 +1,4 @@
+import json
 from flask import request
 from flask_restful import Resource
 from sqlalchemy import or_
@@ -6,58 +7,20 @@ from ..models import Country, country_schema, countries_schema, db, generalError
 
 class CountriesResource(Resource):
     def get(self):
-        queries = []
-        search = request.args.get('search')
+        query_params = request.args
 
-        # Filters for matches of search term
-        if search:
-            match = f'%{search}%'
+        response = Country.find_many(query_params)
 
-            queries.append(or_(
-                Country.code.ilike(match),
-                Country.name.ilike(match),
-                Country.continent.ilike(match),
-                Country.region.ilike(match),
-                Country.localname.ilike(match),
-                Country.governmentform.ilike(match)
-            ))
+        if isinstance(response, generalError):
+            return response.dict(), response.status
 
-
-        # Filters for records that match specific query params
-        params = ['name', 'continent', 'governmentform']
-        for p in params:
-            param_val = request.args.get(p)
-
-            if param_val:
-                attr = getattr(Country, p)
-                queries.append(attr.ilike(f'%{param_val}%'))
-
-
-        # filters for records with numeric values greater/less than query param values
-        num_params = ['population', 'lifeexpectancy', 'surfacearea']
-        for p in num_params:
-            param_val = request.args.get(p)
-
-            if param_val:
-                attr = getattr(Country, p)
-                members = param_val.split(':')
-                direction = members[0]
-                num_val = int(members[1])
-
-                if direction == 'gt':
-                    queries.append(attr > num_val)
-                if direction == 'lt':
-                    queries.append(attr < num_val)
-
-
-        countries = Country.query.filter(*queries)
-
-        countries_json = countries_schema.dump(countries)
+        countries_json = countries_schema.dump(response)
 
         return {
             '_length': len(countries_json),
             'countries': countries_json
         }, 200
+
 
 
 
@@ -67,7 +30,7 @@ class CountriesResource(Resource):
         response = Country.create(country_data)
 
         if isinstance(response, generalError):
-            return response.message, response.status
+            return response.dict(), response.status
 
         return country_schema.dump(response), 201
 
@@ -75,44 +38,34 @@ class CountriesResource(Resource):
 
 class CountryResource(Resource):
     def get(self, countrycode):
-        country = Country.query.get(countrycode)
+        response = Country.find(countrycode)
 
-        if not country:
-            return { 'message': 'No country found with that countrycode.' }, 404
+        if isinstance(response, generalError):
+            return response.dict(), response.status
 
-        return country_schema.dump(country), 200
+        return country_schema.dump(response), 200
+
 
 
     def patch(self, countrycode):
-        country = Country.query.get(countrycode)
+        provided_fields = request.json.items()
 
-        if not country:
-            return { 'message': 'No country found with that countrycode.' }, 404
+        response = Country.update(countrycode, provided_fields)
 
-        available_fields = (
-            'name',
-            'continent',
-            'region',
-            'surfacearea',
-            'indepyear',
-            'population',
-            'lifeexpectancy',
-            'localname',
-            'governmentform',
-            'capital_id',
-            'code2'
-        )
+        if isinstance(response, generalError):
+            return response.dict(), response.status
 
-        for key, value in request.json.items():
-            if key in available_fields:
-                setattr(country, key, value)
+        return country_schema.dump(response), 200
 
-        db.session.commit()
-
-        return country_schema.dump(country), 200
 
 
     def delete(self, countrycode):
-        Country.delete(countrycode)
+        response = Country.delete(countrycode)
 
-        return { 'message': 'Country deleted' }, 200
+        if isinstance(response, generalError):
+            return response.dict(), response.status
+
+        return {
+            'success': True,
+            'message': 'Country deleted'
+        }, 200
