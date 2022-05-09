@@ -1,3 +1,4 @@
+import traceback
 from ..models import ServerError
 
 def build_handled_query(query):
@@ -6,6 +7,8 @@ def build_handled_query(query):
             return query(*kwargs, **args)
 
         except:
+            print('Stack Trace ==>', traceback.format_exc())
+
             return ServerError()
 
     return handled_query

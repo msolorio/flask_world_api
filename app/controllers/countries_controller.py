@@ -1,8 +1,7 @@
 import json
 from flask import request
 from flask_restful import Resource
-from sqlalchemy import or_
-from ..models import Country, country_schema, countries_schema, db, generalError
+from ..models import Country, country_schema, countries_schema, generalError
 
 
 class CountriesResource(Resource):
@@ -14,11 +13,12 @@ class CountriesResource(Resource):
         if isinstance(response, generalError):
             return response.dict(), response.status
 
-        countries_json = countries_schema.dump(response)
+        found_countries = countries_schema.dump(response)
 
         return {
-            '_length': len(countries_json),
-            'countries': countries_json
+            '_length': len(found_countries),
+            '_status': 200,
+            'countries': found_countries
         }, 200
 
 
@@ -32,7 +32,12 @@ class CountriesResource(Resource):
         if isinstance(response, generalError):
             return response.dict(), response.status
 
-        return country_schema.dump(response), 201
+        created_country = country_schema.dump(response)
+
+        return {
+            '_status': 201,
+            'created_country': created_country
+        }, 201
 
 
 
@@ -43,7 +48,12 @@ class CountryResource(Resource):
         if isinstance(response, generalError):
             return response.dict(), response.status
 
-        return country_schema.dump(response), 200
+        found_country = country_schema.dump(response)
+
+        return {
+            '_status': 200,
+            'found_country': found_country
+        }, 200
 
 
 
@@ -55,7 +65,12 @@ class CountryResource(Resource):
         if isinstance(response, generalError):
             return response.dict(), response.status
 
-        return country_schema.dump(response), 200
+        updated_country = country_schema.dump(response)
+
+        return {
+            '_status': 200,
+            'updated_country': updated_country
+        }, 200
 
 
 
@@ -66,6 +81,6 @@ class CountryResource(Resource):
             return response.dict(), response.status
 
         return {
-            'success': True,
+            '_status': 200,
             'message': 'Country deleted'
         }, 200

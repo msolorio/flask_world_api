@@ -5,12 +5,12 @@ from ... import db
 
 
 def find_country_query(Country, country_code):
-    country = Country.query.get(country_code)
+    found_country = Country.query.get(country_code)
 
-    if not country:
+    if not found_country:
         return ClientError('No country found with that country code.', 404)
 
-    return country
+    return found_country
 
 
 find = build_handled_query(find_country_query)

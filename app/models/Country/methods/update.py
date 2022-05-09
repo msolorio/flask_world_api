@@ -1,6 +1,5 @@
 from ....utils.build_handled_query import build_handled_query
 from ... import ClientError
-
 from ... import db
 
 
@@ -30,7 +29,9 @@ def update_country_query(Country, country_code, provided_fields):
 
     db.session.commit()
 
-    return country
+    updated_country = country
+
+    return updated_country
 
 
 update = build_handled_query(update_country_query)

@@ -3,12 +3,12 @@ from ....utils.build_handled_query import build_handled_query
 from ... import ClientError
 
 def find_many_country_query(Country, query_params):
-    search = query_params.get('search')
-
 
     queries = []
 
     # Filters for matches of search term
+    search = query_params.get('search')
+
     if search:
         match = f'%{search}%'
 

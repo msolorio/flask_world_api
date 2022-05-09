@@ -10,8 +10,9 @@ def create_app():
     app.config.from_object('app.config')
     db.init_app(app)
     ma.init_app(app)
-    api = Api(app, '/api')
     Migrate(app, db)
+    
+    api = Api(app, '/api')
 
     api.add_resource(ApiResource, '/')
     api.add_resource(DocsResource, '/docs')
