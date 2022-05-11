@@ -1,5 +1,8 @@
 # World Data API
-REST API for searching world data.
+
+https://world-data-api.herokuapp.com/api/docs
+
+REST API for searching data pertaining to countries and cities around the world.
 
 ![world map](./readme-assets/world-map.jpg)
 
