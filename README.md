@@ -2,9 +2,8 @@
 
 https://world-data-api.herokuapp.com/api/docs
 
-REST API for searching data pertaining to countries and cities around the world.
+Took an existing large dataset and built a REST API for searching data pertaining to countries and cities around the world.
 
-![world map](./readme-assets/world-map.jpg)
 
 ---
 
@@ -16,6 +15,9 @@ REST API for searching data pertaining to countries and cities around the world.
 - Swagger / Open API UI
 
 ---
+
+<!-- ![world map](./readme-assets/world-map.jpg) -->
+![World Data API ERD](./readme-assets/world-data-api-erd.png)
 
 ## Ways to Explore
 
